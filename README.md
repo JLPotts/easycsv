@@ -3,7 +3,7 @@ easycsv package provides API to read CSV files in Go (golang) easily. This is fo
 
 # Installation
 ```
-go get -u github.com/JLPotts/easycsv
+go get -u github.com/stpetejess/easycsv
 ```
 
 # Features
