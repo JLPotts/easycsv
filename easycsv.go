@@ -1,7 +1,8 @@
 package easycsv
 
 import (
-	"encoding/csv"
+	csv "github.com/bringhub/csv"
+
 	"errors"
 	"fmt"
 	"io"
@@ -38,6 +39,8 @@ func newCSVReader(r io.Reader, opt Option) *csv.Reader {
 	if opt.Comment != 0 {
 		cr.Comment = opt.Comment
 	}
+	cr.LazyQuotes = opt.LazyQuotes
+	cr.AllowBackslashEscapedQuotes = opt.AllowBackslashEscapedQuotes
 	return cr
 }
 
@@ -63,6 +66,7 @@ func NewReadCloser(r io.ReadCloser, opts ...Option) *Reader {
 	}
 	return &Reader{
 		csv:    newCSVReader(r, opt),
+		opt:    opt,
 		closer: r,
 	}
 }

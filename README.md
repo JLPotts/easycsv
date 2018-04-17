@@ -1,19 +1,15 @@
 # easycsv
-easycsv package provides API to read CSV files in Go (golang) easily.
+easycsv package provides API to read CSV files in Go (golang) easily. This is forked from [yunabe/easycsv GitHub](https://github.com/yunabe/easycsv) and contains additions for AllowBackslashEscapedQuotes and passing through LazyQuotes to the csv.Reader. Uses [bringhub/csv GitHub](https://github.com/bringhub/csv)
 
 # Installation
 ```
-go get -u github.com/yunabe/easycsv
+go get -u github.com/JLPotts/easycsv
 ```
 
 # Features
 - You can read CSV files with less boilerplate code because `easycsv` provides a consice error API.
 - `easycsv` automatically converts CSV rows into your custom structs.
 - Of course, you can handle TSV and other CSV-like formats by customizing `easycsv.Reader`.
-
-# Links
-- [yunabe/easycsv godoc](https://godoc.org/github.com/yunabe/easycsv)
-- [yunabe/easycsv GitHub](https://github.com/yunabe/easycsv)
 
 # Quick Tour
 
@@ -183,6 +179,9 @@ Like [csv.Reader](https://golang.org/pkg/encoding/csv/#Reader) in the standard l
 
 ## Comment
 Comment, if not 0, is the comment character. Lines beginning with the character without preceding whitespace are ignored.
+
+## AllowBackslashEscapedQuotes
+If AllowBackslashEscapedQuotes is true, a \" may appear in a quoted field. EG: "Title of \"Something\""
 
 # Customizing decoders
 By default, easycsv converts strings in CSV to integers, floats and bool automatically based on the types of struct fields and slices.

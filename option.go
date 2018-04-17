@@ -21,6 +21,11 @@ type Option struct {
 	AutoIndex bool
 	// TODO: Support AutoName
 	AutoName bool
+	// If LazyQuotes is true, a quote may appear in an unquoted field and a
+	// non-doubled quote may appear in a quoted field.
+	LazyQuotes bool
+	// If AllowBackslashEscapedQuotes is true, a \" may appear in a quoted field
+	AllowBackslashEscapedQuotes bool
 }
 
 func (a *Option) mergeOption(b Option) {
@@ -31,7 +36,7 @@ func (a *Option) mergeOption(b Option) {
 		a.Comment = b.Comment
 	}
 	if b.AutoIndex {
-		a.AutoIndex = true
+		a.AutoIndex = b.AutoIndex
 	}
 	if b.AutoName {
 		a.AutoName = true
@@ -52,6 +57,8 @@ func (a *Option) mergeOption(b Option) {
 			a.TypeDecoders[t] = dec
 		}
 	}
+	a.LazyQuotes = b.LazyQuotes
+	a.AllowBackslashEscapedQuotes = b.AllowBackslashEscapedQuotes
 }
 
 func (a *Option) validate() error {
